@@ -17,7 +17,14 @@
             return React.createElement("p", null, "Functional Component");
         }
         const HelloFunctionalComponent = React.createElement(Hello, null, null);
-        ReactDOM.render(HelloFunctionalComponent, document.getElementById("root"))
+        const parentWithMultipleChildren = React.createElement(
+            "div",
+            null,
+            helloWorld,
+            HelloFunctionalComponent,
+            "I'm a parent component"
+        )
+        ReactDOM.render(parentWithMultipleChildren, document.getElementById("root"))
     </script>
 </body>
 

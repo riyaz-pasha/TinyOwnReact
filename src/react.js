@@ -2,7 +2,10 @@
     function anElement(element, children) {
         if (typeof element === "function") return element();
         const anElement = document.createElement(element);
-        anElement.innerHTML = children.join(" ");
+        children.forEach(child => {
+            if (typeof child === "object") anElement.appendChild(child);
+            else anElement.innerHTML += child;
+        });
         return anElement;
     }
 
