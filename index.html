@@ -24,7 +24,13 @@
             HelloFunctionalComponent,
             "I'm a parent component"
         )
-        ReactDOM.render(parentWithMultipleChildren, document.getElementById("root"))
+        class ClassComponentExample {
+            render() {
+                return React.createElement("h3", null, "Rendering Class components as well");
+            }
+        }
+        const classComponent = React.createElement(ClassComponentExample, null, null);
+        ReactDOM.render(classComponent, document.getElementById("root"))
     </script>
 </body>
 
