@@ -1,5 +1,6 @@
 (() => {
     function anElement(element, children) {
+        if (typeof element === "function") return element();
         const anElement = document.createElement(element);
         anElement.innerHTML = children.join(" ");
         return anElement;
