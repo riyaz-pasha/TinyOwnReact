@@ -1,7 +1,7 @@
 (() => {
 
-    function handleClass(element) {
-        const component = new element();
+    function handleClass(element, props) {
+        const component = new element(props);
         return component.render();
     }
 
@@ -17,7 +17,7 @@
     }
 
     function anElement(element, props, children) {
-        if (isClass(element)) return handleClass(element);
+        if (isClass(element)) return handleClass(element, props);
         if (isFunction(element)) return element(props);
         return handleHTMLElement(element, children);
     }
@@ -26,8 +26,15 @@
         return anElement(element, props, children);
     }
 
+    class Component {
+        constructor(props) {
+            this.props = props;
+        }
+    }
+
     window.React = {
         createElement,
+        Component,
     }
 
     window.ReactDOM = {
