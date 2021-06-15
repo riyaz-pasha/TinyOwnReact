@@ -16,14 +16,14 @@
         return anElement;
     }
 
-    function anElement(element, children) {
+    function anElement(element, props, children) {
         if (isClass(element)) return handleClass(element);
-        if (isFunction(element)) return element();
+        if (isFunction(element)) return element(props);
         return handleHTMLElement(element, children);
     }
 
     function createElement(element, props, ...children) {
-        return anElement(element, children);
+        return anElement(element, props, children);
     }
 
     window.React = {
