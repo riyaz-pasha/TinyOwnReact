@@ -5,24 +5,36 @@
         return component.render();
     }
 
+    function extractEvent(propName) {
+        return propName.substring(2).toLowerCase();
+    }
+
+    function appendChild(child, anElement) {
+        if (typeof child === "object")
+            anElement.appendChild(child);
+        else
+            anElement.innerHTML += child;
+    }
+
+    function appendChildren(children, anElement) {
+        return children.forEach(child => appendChild(child, anElement));
+    }
+
+    function appendProp(propName, propValue, anElement) {
+        if (shouldAddEventListener(propName))
+            return anElement.addEventListener(extractEvent(propName), propValue);
+        return anElement.setAttribute(propName, propValue);
+    }
+
+    function appendProps(props, anElement) {
+        return Object.entries(props || {})
+            .forEach(([propName, propValue]) => appendProp(propName, propValue, anElement))
+    }
+
     function handleHTMLElement(element, props, children) {
         const anElement = document.createElement(element);
-        children.forEach(child => {
-            if (typeof child === "object")
-                anElement.appendChild(child);
-            else
-                anElement.innerHTML += child;
-        });
-        Object.keys(props || {}).forEach(propName => {
-            if (isAnEventAttribute(propName)) {
-                anElement.addEventListener(
-                    propName.substring(2).toLowerCase(),
-                    props[propName]
-                );
-            } else {
-                anElement.setAttribut(propName, props[propName]);
-            }
-        })
+        appendChildren(children, anElement);
+        appendProps(props, anElement)
         return anElement;
     }
 

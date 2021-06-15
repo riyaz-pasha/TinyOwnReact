@@ -7,6 +7,6 @@ function isFunction(element) {
     return typeof element === "function";
 }
 
-function isAnEventAttribute(propName) {
+function shouldAddEventListener(propName) {
     return /^on.*$/.test(propName)
 }
