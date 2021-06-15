@@ -6,3 +6,7 @@ function isClass(element) {
 function isFunction(element) {
     return typeof element === "function";
 }
+
+function isAnEventAttribute(propName) {
+    return /^on.*$/.test(propName)
+}

@@ -35,4 +35,13 @@ class ClassComponentWithProps extends React.Component {
     }
 }
 const classComponentWithProps = React.createElement(ClassComponentWithProps, { name: "Riyaz Pasha" }, null)
-ReactDOM.render(classComponentWithProps, document.getElementById("root"))
+
+const CustomButton = (props) => {
+    return React.createElement(
+        "button",
+        { onClick: props.onClick },
+        "Custom Button"
+    )
+}
+const ButtonComponent = React.createElement(CustomButton, { onClick: () => alert("Button Clicked") }, null)
+ReactDOM.render(ButtonComponent, document.getElementById("root"))
